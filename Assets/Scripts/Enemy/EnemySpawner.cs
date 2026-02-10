@@ -39,6 +39,7 @@ public class EnemySpawner : MonoBehaviour
                 (wave.waveData.spawnDelay.x,
                 wave.waveData.spawnDelay.y,
                 Random.Range(0f,1f))
+                * enemy.spawnCost
                 );
         }
     }
@@ -80,6 +81,10 @@ public class EnemySpawner : MonoBehaviour
 
         Enemy enemy = enemyGO.GetComponent<Enemy>();
         if (enemy == null) return;
+        
+        enemy.speed = enemyData.speed;
+        enemy.maxHP = enemyData.maxHP;
+        enemy.goldReward = enemyData.goldReward;
         enemy.Initialize(path);
     }
 }

@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Stats")]
+    [SerializeField] public float maxHP;
+    [SerializeField] public int goldReward;
+    private float HP;
+
     [Header("Movement")]
     public Path currentPath;
     [Range(0f, 1f)] public float progress = 0f;
@@ -14,6 +19,8 @@ public class Enemy : MonoBehaviour
     {
         EnemyManager.instance.addEnemy(this);
         currentPath = path;
+
+        HP = maxHP;
     }
 
     private void FixedUpdate()

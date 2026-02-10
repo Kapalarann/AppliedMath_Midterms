@@ -498,7 +498,7 @@ Transform:
   m_GameObject: {fileID: 603938923}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.52, y: 1, z: -2.26}
+  m_LocalPosition: {x: -4.81, y: 1, z: -0.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -520,8 +520,8 @@ MonoBehaviour:
   prefersHighAngle: 1
   cooldown: 2
   damage: 1
-  _range: 30
-  speed: 17.155174
+  _range: 10
+  speed: 9.904545
   shootPoint: {fileID: 237509580}
   projectilePrefab: {fileID: 6343473548989147803, guid: 9052079795d221546b02a69dc8e3a374, type: 3}
   target: {fileID: 0}
@@ -604,9 +604,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Path
   points:
-  - {x: 1, y: 0, z: 0}
-  - {x: 3.7561798, y: 0, z: 6.965625}
-  - {x: 4.753886, y: 0, z: -4.561427}
+  - {x: 0.44853592, y: 0, z: -0.050837517}
+  - {x: 4.311141, y: 0, z: 4.5362186}
+  - {x: 4.427657, y: 0, z: -4.858404}
   - {x: 9.013329, y: 0, z: -5.4541855}
   - {x: 11.892029, y: 0, z: -5.8420777}
   - {x: 9.920052, y: 0, z: 5.6220555}
@@ -624,6 +624,61 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -20, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1118422743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1118422745}
+  - component: {fileID: 1118422744}
+  m_Layer: 0
+  m_Name: Path (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1118422744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118422743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9993194f021d348bd9e687e9d8dfc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Path
+  points:
+  - {x: 0.7562876, y: 0, z: -0.34734344}
+  - {x: 4.426572, y: 0, z: -2.7673283}
+  - {x: 2.2727947, y: 0, z: -8.884126}
+  - {x: 6.670055, y: 0, z: -7.287242}
+  - {x: 10.638056, y: 0, z: -5.9961185}
+  - {x: 11.622774, y: 0, z: -13.050653}
+  - {x: 7.464122, y: 0, z: -13.931716}
+  - {x: 4.135082, y: 0, z: -14.735218}
+  - {x: 3.4221191, y: 0, z: -17.097492}
+  - {x: 5.885043, y: 0, z: -19.821287}
+--- !u!4 &1118422745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118422743}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.98, y: 0, z: 10.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -791,6 +846,15 @@ MonoBehaviour:
     startDelay: 5
     paths:
     - {fileID: 843824401}
+  - waveData: {fileID: 11400000, guid: 968bca90979c04b4a9c70b129ed1be9b, type: 2}
+    startDelay: 5
+    paths:
+    - {fileID: 1118422744}
+  - waveData: {fileID: 11400000, guid: 2cb3869d345fac743bb351b12c7d7aba, type: 2}
+    startDelay: 5
+    paths:
+    - {fileID: 843824401}
+    - {fileID: 1118422744}
 --- !u!114 &2089340815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,4 +878,5 @@ SceneRoots:
   - {fileID: 1645861081}
   - {fileID: 2089340813}
   - {fileID: 843824402}
+  - {fileID: 1118422745}
   - {fileID: 603938927}
