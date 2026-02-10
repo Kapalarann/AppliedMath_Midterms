@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 
     public void Initialize(Path path)
     {
+        EnemyManager.instance.addEnemy(this);
         currentPath = path;
     }
 
@@ -20,7 +21,18 @@ public class Enemy : MonoBehaviour
         if (currentPath == null) return;
 
         progress = Mathf.Clamp01(progress + (speed * Time.fixedDeltaTime));
-        if(progress == 1f) Destroy(gameObject); //player take damage
+        if(progress == 1f) ReachEnd();
         transform.position = currentPath.GetPointOnPath(progress);
+    }
+
+    private void ReachEnd()
+    {
+        Destroy(gameObject); 
+        //player take damage
+    }
+
+    private void OnDestroy()
+    {
+        EnemyManager.instance.removeEnemy(this);
     }
 }

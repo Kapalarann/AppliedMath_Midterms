@@ -3,6 +3,9 @@ using UnityEngine;
 
 public abstract class ITower : MonoBehaviour
 {
+    [Header("Setting")]
+    [SerializeField] private bool prefersHighAngle = false;
+
     [Header("Stats")]
     [SerializeField] float cooldown;
     [SerializeField] float damage;
@@ -38,9 +41,29 @@ public abstract class ITower : MonoBehaviour
         if(timer < cooldown) timer += Time.fixedDeltaTime;
         if(timer >= cooldown)
         {
-            timer -= cooldown;
+            AcquireTarget();
+            if (target == null) return;
             Shoot();
+            timer -= cooldown;
         }
+    }
+
+    private void AcquireTarget()
+    {
+        Enemy first = null;
+        float firstProg = 0f;
+
+        foreach (Enemy e in EnemyManager.instance.enemies)
+        {
+            if (Vector3.Distance(e.targetPoint.position, shootPoint.position) <= Range && // within range
+                e.progress > firstProg) // & farthest progress
+            {
+                first = e;
+                firstProg = e.progress;
+            }
+        }
+
+        if(first != null) target = first.transform;
     }
 
     public virtual void Shoot()
@@ -58,7 +81,8 @@ public abstract class ITower : MonoBehaviour
         ballisticDir = Computations.PredictiveBallisticAimOnPath(
                 shootPoint,
                 target.GetComponent<Enemy>(),
-                speed);
+                speed,
+                prefersHighAngle);
 
         projectile.velocity = ballisticDir * speed;
         projectile.damage = damage;
