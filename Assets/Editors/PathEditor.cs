@@ -52,6 +52,7 @@ public class PathEditor : Editor
             {
                 Undo.RecordObject(path, "Move Point");
                 path.setPoint(i, path.transform.InverseTransformPoint(point));
+                path.RecalculateLengths();
             }
         }
     }

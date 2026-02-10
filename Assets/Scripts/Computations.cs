@@ -1,3 +1,4 @@
+﻿using Unity.VisualScripting;
 using UnityEngine;
 
 public static class Computations
@@ -8,7 +9,7 @@ public static class Computations
         float gravity = Mathf.Abs(Physics.gravity.y);
 
         Vector3 toTargetXZ = new Vector3(toTarget.x, 0f, toTarget.z);
-        float yHeight = toTarget.y + 0.25f;
+        float yHeight = toTarget.y;
         float xzDist = toTargetXZ.magnitude;
 
         float speedSq = speed * speed;
@@ -30,47 +31,83 @@ public static class Computations
         return dir.normalized;
     }
 
-    public static Vector3 PredictiveBallisticAim(
+    public static Vector3 PredictEnemyPositionOnPath(
     Transform origin,
-    Enemy target,
+    Enemy enemy,
     float projectileSpeed)
     {
         Vector3 originPos = origin.position;
-        Vector3 targetPos = target.targetPoint.position;
-        Vector3 targetVel = target.velocity;
 
-        float time = Vector3.Distance(originPos, targetPos) / projectileSpeed;
+        // Initial guess: straight-line time
+        Vector3 enemyPos = enemy.currentPath.GetPointOnPath(enemy.progress);
+        float time = Vector3.Distance(originPos, enemyPos) / projectileSpeed;
 
-        Vector3 predictedPos = targetPos + targetVel * time;
+        // Distance enemy travels along the path in that time
+        float travelDistance = enemy.speed * time;
 
-        Vector3 dir = CalculateBallisticAngle(predictedPos, originPos, projectileSpeed);
+        // Convert distance → progress delta
+        float progressDelta = travelDistance / enemy.currentPath.getLength();
 
-        Vector3 toPredicted = predictedPos - originPos;
-        float horizontalSpeed = projectileSpeed * new Vector3(dir.x, 0f, dir.z).magnitude;
-        float horizontalDistance = new Vector3(toPredicted.x, 0f, toPredicted.z).magnitude;
+        float predictedProgress = Mathf.Clamp01(enemy.progress + progressDelta);
 
-        if (horizontalSpeed > 0.001f)
+        return enemy.currentPath.GetPointOnPath(predictedProgress);
+    }
+
+    public static Vector3 PredictiveBallisticAimOnPath(
+    Transform origin,
+    Enemy enemy,
+    float projectileSpeed,
+    int maxIterations = 15,
+    float tolerance = 0.001f)
+    {
+        Vector3 originPos = origin.position;
+
+        float predictedProgress = enemy.progress;
+        Vector3 predictedPos = enemy.currentPath.GetPointOnPath(predictedProgress);
+        predictedPos.y = enemy.targetPoint.position.y;
+
+        for (int i = 0; i < maxIterations; i++)
         {
-            time = horizontalDistance / horizontalSpeed;
-            predictedPos = targetPos + targetVel * time;
-            dir = CalculateBallisticAngle(predictedPos, originPos, projectileSpeed);
+            float distance = Vector3.Distance(originPos, predictedPos);
+
+            Vector3 toTarget = predictedPos - originPos;
+            Vector3 dir = CalculateBallisticAngle(predictedPos, originPos, projectileSpeed);
+            float horizontalDistance = new Vector3(toTarget.x, 0f, toTarget.z).magnitude;
+            float horizontalSpeed = projectileSpeed * new Vector3(dir.x, 0f, dir.z).magnitude;
+            float flightTime = horizontalDistance / horizontalSpeed;
+
+            float newProgress = Mathf.Clamp01(enemy.progress + enemy.speed * flightTime);
+            Vector3 newPredictedPos = enemy.currentPath.GetPointOnPath(newProgress);
+            newPredictedPos.y = enemy.targetPoint.position.y;
+
+            if ((newPredictedPos - predictedPos).sqrMagnitude < tolerance * tolerance)
+            {
+                predictedPos = newPredictedPos;
+                predictedProgress = newProgress;
+                Debug.Log("Tolerance met after " + (i+1) + " iterations.");
+                break;
+            }
+
+            predictedPos = newPredictedPos;
+            predictedProgress = newProgress;
         }
 
-        return dir;
+        // Final ballistic direction
+        return CalculateBallisticAngle(predictedPos, originPos, projectileSpeed);
     }
 
 
-    public static Vector3 CalculateBallisticVelocity(Vector3 target, Vector3 origin, float timeToTarget, float gravityScale = 1f)
+    public static Vector3 CubicBezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
     {
-        Vector3 displacement = target - origin;
-        Vector3 displacementXZ = new Vector3(displacement.x, 0f, displacement.z);
+        float u = 1f - t;
+        float tt = t * t;
+        float uu = u * u;
 
-        float gravity = Mathf.Abs(Physics.gravity.y * gravityScale);
-
-        float vy = displacement.y / timeToTarget + 0.5f * gravity * timeToTarget;
-        Vector3 vxz = displacementXZ / timeToTarget;
-
-        return vxz + (Vector3.up * vy);
+        return
+            uu * u * p0 +
+            3f * uu * t * p1 +
+            3f * u * tt * p2 +
+            tt * t * p3;
     }
 
 }
