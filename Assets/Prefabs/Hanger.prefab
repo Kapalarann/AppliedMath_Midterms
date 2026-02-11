@@ -139,7 +139,7 @@ MonoBehaviour:
   pierce: 0
   velocity: {x: 0, y: 0, z: 0}
   usesGravity: 0
-  rotationSpeed: {x: 0, y: 720, z: 0}
+  rotationSpeed: {x: 720, y: 0, z: 0}
   duration: 0
   timer: 0
   model: {fileID: 6477877134335987158}

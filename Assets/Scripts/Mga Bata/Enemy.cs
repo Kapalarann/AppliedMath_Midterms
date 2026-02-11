@@ -34,8 +34,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        HP = Mathf.Clamp01(HP - damage);
-        if (HP == 0f) Destroy(gameObject);
+        HP -= damage;
+        Debug.Log(name + " took " + damage + " damage. Currently at: " + HP + "/" + maxHP);
+        if (HP < 0f) Destroy(gameObject);
     }
 
     private void ReachEnd()

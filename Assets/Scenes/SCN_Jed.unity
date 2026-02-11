@@ -498,7 +498,7 @@ Transform:
   m_GameObject: {fileID: 480708223}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.61, y: 1, z: 1.76}
+  m_LocalPosition: {x: -10.84, y: 1, z: -6.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -519,11 +519,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hanger
   prefersHighAngle: 0
   cooldown: 2
-  damage: 1
+  hitRadius: 0.5
+  damage: 2
   pierce: 4
-  duration: 2
+  duration: 1
   _range: 6
   speed: 7.672027
+  speedMult: 2
   shootPoint: {fileID: 773834111}
   projectilePrefab: {fileID: 6343473548989147803, guid: a088997ede597f2409bcae1f81e3f1e1, type: 3}
   target: {fileID: 0}
@@ -632,11 +634,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tsinelas
   prefersHighAngle: 1
   cooldown: 3
-  damage: 3
+  hitRadius: 0.2
+  damage: 6
   pierce: 1
   duration: 4
   _range: 10
   speed: 9.904545
+  speedMult: 1
   shootPoint: {fileID: 237509580}
   projectilePrefab: {fileID: 6343473548989147803, guid: 9052079795d221546b02a69dc8e3a374, type: 3}
   target: {fileID: 0}

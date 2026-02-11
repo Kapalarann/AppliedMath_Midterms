@@ -8,6 +8,7 @@ public abstract class ITower : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] float cooldown;
+    [SerializeField] float hitRadius;
     [SerializeField] float damage;
     [SerializeField] int pierce;
     [SerializeField] float duration;
@@ -24,6 +25,7 @@ public abstract class ITower : MonoBehaviour
         get => speed;
         private set => speed = value; // optional: read-only from outside
     }
+    public float speedMult = 1f;
     private float gravity = 9.81f;
 
     private float timer;
@@ -79,7 +81,8 @@ public abstract class ITower : MonoBehaviour
         GameObject proj = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
         Projectile projectile = proj.GetComponent<Projectile>();
 
-        projectile.velocity = ShootDir() * Speed;
+        projectile.velocity = ShootDir() * Speed * speedMult;
+        projectile.hitRadius = hitRadius;
         projectile.damage = damage;
         projectile.pierce = pierce;
         projectile.duration = duration;

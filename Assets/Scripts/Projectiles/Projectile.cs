@@ -32,7 +32,10 @@ public class Projectile : MonoBehaviour
 
         transform.Translate(velocity * Time.fixedDeltaTime);
         model.Rotate(rotationSpeed * Time.fixedDeltaTime);
+    }
 
+    private void Update()
+    {
         CheckEnemy();
     }
 
@@ -40,14 +43,18 @@ public class Projectile : MonoBehaviour
     {
         foreach (var enemy in EnemyManager.instance.enemies)
         {
-            if (Vector3.Distance(transform.position, enemy.transform.position) <= hitRadius
+            if (Vector3.Distance(transform.position, enemy.targetPoint.position) <= hitRadius
                 && !alreadyHit.Contains(enemy))
             {
                 enemy.TakeDamage(damage);
                 alreadyHit.Add(enemy);
 
                 pierce--;
-                if(pierce <= 0) Destroy(gameObject);
+                if (pierce <= 0)
+                {
+                    Destroy(gameObject);
+                    break;
+                }
             }
         }
     }
