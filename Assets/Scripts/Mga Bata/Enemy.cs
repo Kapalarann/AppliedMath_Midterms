@@ -32,6 +32,12 @@ public class Enemy : MonoBehaviour
         transform.position = currentPath.GetPointOnPath(progress);
     }
 
+    public void TakeDamage(float damage)
+    {
+        HP = Mathf.Clamp01(HP - damage);
+        if (HP == 0f) Destroy(gameObject);
+    }
+
     private void ReachEnd()
     {
         Destroy(gameObject); 

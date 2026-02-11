@@ -122,6 +122,57 @@ public static class Computations
             prefersHighAngle);
     }
 
+    public static Vector3 PredictiveStraightAimOnPath(
+    Transform origin,
+    Enemy enemy,
+    float projectileSpeed,
+    int maxIterations = 15,
+    float tolerance = 0.001f)
+    {
+        Vector3 originPos = origin.position;
+
+        float predictedProgress = enemy.progress;
+        Vector3 predictedPos =
+            enemy.currentPath.GetPointOnPath(predictedProgress);
+
+        // Lock everything to XZ plane
+        predictedPos.y = originPos.y;
+
+        for (int i = 0; i < maxIterations; i++)
+        {
+            Vector3 toTarget = predictedPos - originPos;
+            toTarget.y = 0f;
+
+            float distance = toTarget.magnitude;
+            if (distance < 0.001f)
+                break;
+
+            float flightTime = distance / projectileSpeed;
+
+            float newProgress =
+                Mathf.Clamp01(enemy.progress + enemy.speed * flightTime);
+
+            Vector3 newPredictedPos =
+                enemy.currentPath.GetPointOnPath(newProgress);
+            newPredictedPos.y = originPos.y;
+
+            if ((newPredictedPos - predictedPos).sqrMagnitude <
+                tolerance * tolerance)
+            {
+                predictedPos = newPredictedPos;
+                predictedProgress = newProgress;
+                break;
+            }
+
+            predictedPos = newPredictedPos;
+            predictedProgress = newProgress;
+        }
+
+        Vector3 finalDir = predictedPos - originPos;
+        finalDir.y = 0f;
+
+        return finalDir.normalized;
+    }
 
     public static Vector3 CubicBezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
     {
@@ -136,4 +187,17 @@ public static class Computations
             tt * t * p3;
     }
 
+    public static Quaternion rotateYawTowardsVelocity(Vector3 v)
+    {
+        Vector3 flatVel = v;
+        flatVel.y = 0f;
+
+        if (flatVel.sqrMagnitude > 0.0001f)
+        {
+            float yaw = Mathf.Atan2(flatVel.x, flatVel.z) * Mathf.Rad2Deg;
+            return Quaternion.Euler(0f, yaw, 0f);
+        }
+
+        return Quaternion.Euler(0f, 0f, 0f);
+    }
 }

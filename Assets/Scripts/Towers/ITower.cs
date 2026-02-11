@@ -9,6 +9,8 @@ public abstract class ITower : MonoBehaviour
     [Header("Stats")]
     [SerializeField] float cooldown;
     [SerializeField] float damage;
+    [SerializeField] int pierce;
+    [SerializeField] float duration;
     [SerializeField] private float _range;
     public float Range{
         get => _range;
@@ -27,8 +29,8 @@ public abstract class ITower : MonoBehaviour
     private float timer;
 
     [Header("References")]
-    [SerializeField] private Transform shootPoint;
-    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] public Transform shootPoint;
+    [SerializeField] public GameObject projectilePrefab;
     public Transform target;
 
     private void OnValidate()
@@ -77,15 +79,21 @@ public abstract class ITower : MonoBehaviour
         GameObject proj = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
         Projectile projectile = proj.GetComponent<Projectile>();
 
-        Vector3 ballisticDir = Vector3.zero;
-        ballisticDir = Computations.PredictiveBallisticAimOnPath(
+        projectile.velocity = ShootDir() * Speed;
+        projectile.damage = damage;
+        projectile.pierce = pierce;
+        projectile.duration = duration;
+
+        projectile.Instantiate();
+    }
+
+    public virtual Vector3 ShootDir()
+    {
+        return Computations.PredictiveBallisticAimOnPath(
                 shootPoint,
                 target.GetComponent<Enemy>(),
-                speed,
+                Speed,
                 prefersHighAngle);
-
-        projectile.velocity = ballisticDir * speed;
-        projectile.damage = damage;
     }
 
     void OnDrawGizmos()
