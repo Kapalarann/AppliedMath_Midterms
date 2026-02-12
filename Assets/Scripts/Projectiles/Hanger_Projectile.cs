@@ -12,6 +12,7 @@ public class Hanger_Projectile : Projectile
         if (timer < (duration / 2) )
         {
             velocity *= -1f;
+            rotationSpeed *= -1f;
             alreadyHit.Clear();
             flipped = true;
         }

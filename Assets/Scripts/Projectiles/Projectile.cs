@@ -4,12 +4,15 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Header("Projectile Settings")]
+    public bool usesGravity;
+    public bool rotatesTowards;
+    public Vector3 rotationSpeed;
+
+    [Header("Stats")]
     public float hitRadius;
     public float damage;
     public int pierce;
     public Vector3 velocity;
-    public bool usesGravity;
-    public Vector3 rotationSpeed;
     public float duration;
     public float timer;
     public bool isMoving = true;
@@ -23,7 +26,7 @@ public class Projectile : MonoBehaviour
         timer = duration;
         Destroy(gameObject, duration);
 
-        model.rotation *= Computations.rotateYawTowardsVelocity(velocity);
+        if (rotatesTowards) model.rotation *= Computations.rotateYawTowardsVelocity(velocity);
     }
 
     public virtual void FixedUpdate()

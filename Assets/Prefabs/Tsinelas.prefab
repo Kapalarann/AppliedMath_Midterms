@@ -134,13 +134,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059cd5677d7e8c54ba895ab034230b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  usesGravity: 1
+  rotatesTowards: 1
+  rotationSpeed: {x: 360, y: 0, z: 0}
   hitRadius: 0
   damage: 0
   pierce: 0
   velocity: {x: 0, y: 0, z: 0}
-  usesGravity: 1
-  rotationSpeed: {x: 360, y: 0, z: 0}
   duration: 0
   timer: 0
+  isMoving: 1
   model: {fileID: 6477877134335987158}
   alreadyHit: []

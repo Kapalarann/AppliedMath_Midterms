@@ -143,7 +143,7 @@ MonoBehaviour:
   duration: 0
   timer: 0
   isMoving: 1
-  model: {fileID: 0}
+  model: {fileID: 6477877134335987158}
   alreadyHit: []
   path: {fileID: 0}
   progressTarget: 0
