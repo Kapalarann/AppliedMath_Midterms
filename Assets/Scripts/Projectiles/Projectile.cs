@@ -12,12 +12,13 @@ public class Projectile : MonoBehaviour
     public Vector3 rotationSpeed;
     public float duration;
     public float timer;
+    public bool isMoving = true;
 
     [Header("References")]
     public Transform model;
     public List<Enemy> alreadyHit = new List<Enemy>();
 
-    public virtual void Instantiate()
+    public virtual void SetValues()
     {
         timer = duration;
         Destroy(gameObject, duration);
@@ -27,6 +28,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
+        if(!isMoving) return;
         if(usesGravity) velocity += Physics.gravity * Time.fixedDeltaTime;
         timer -= Time.fixedDeltaTime;
 
@@ -34,7 +36,7 @@ public class Projectile : MonoBehaviour
         model.Rotate(rotationSpeed * Time.fixedDeltaTime);
     }
 
-    private void Update()
+    public virtual void Update()
     {
         CheckEnemy();
     }

@@ -1,17 +1,16 @@
-using Unity.Collections;
 using UnityEngine;
 
 public abstract class ITower : MonoBehaviour
 {
     [Header("Setting")]
-    [SerializeField] private bool prefersHighAngle = false;
+    [SerializeField] public bool prefersHighAngle = false;
 
     [Header("Stats")]
-    [SerializeField] float cooldown;
-    [SerializeField] float hitRadius;
-    [SerializeField] float damage;
-    [SerializeField] int pierce;
-    [SerializeField] float duration;
+    [SerializeField] public float cooldown;
+    [SerializeField] public float hitRadius;
+    [SerializeField] public float damage;
+    [SerializeField] public int pierce;
+    [SerializeField] public float duration;
     [SerializeField] private float _range;
     public float Range{
         get => _range;
@@ -28,7 +27,7 @@ public abstract class ITower : MonoBehaviour
     public float speedMult = 1f;
     private float gravity = 9.81f;
 
-    private float timer;
+    public float timer;
 
     [Header("References")]
     [SerializeField] public Transform shootPoint;
@@ -52,7 +51,7 @@ public abstract class ITower : MonoBehaviour
         }
     }
 
-    private void AcquireTarget()
+    public virtual void AcquireTarget()
     {
         Enemy first = null;
         float firstProg = 0f;
@@ -74,7 +73,6 @@ public abstract class ITower : MonoBehaviour
     {
         Vector3 a = target.GetComponent<Enemy>().targetPoint.position;
         Vector3 b = shootPoint.position;
-        a.y = 0f; b.y = 0f;
         float dist = Vector3.Distance(a, b);
         if (dist > _range) return;
 
@@ -87,7 +85,7 @@ public abstract class ITower : MonoBehaviour
         projectile.pierce = pierce;
         projectile.duration = duration;
 
-        projectile.Instantiate();
+        projectile.SetValues();
     }
 
     public virtual Vector3 ShootDir()
