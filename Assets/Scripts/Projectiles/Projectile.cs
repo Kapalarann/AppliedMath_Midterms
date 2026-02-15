@@ -70,7 +70,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void PlayHitVFX()
+    public virtual void PlayHitVFX()
     {
         if (onHitVFX == null) return;
 

@@ -27,6 +27,8 @@ public class Bilao_Projectile : Projectile
             {
                 enemy.TakeDamage(damage);
 
+                PlayHitVFX();
+
                 pierce--;
                 if (pierce <= 0)
                 {
