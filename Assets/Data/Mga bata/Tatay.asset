@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   prefab: {fileID: 4780735978950228973, guid: 63b43138129913b44a13a0813b08d03a, type: 3}
   maxHP: 25
-  speed: 0.015
+  speed: 0.0075
   goldReward: 15
   spawnCost: 2
