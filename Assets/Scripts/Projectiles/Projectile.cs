@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
 
     [Header("VFX")]
     [SerializeField] public spawnVFX onHitVFX;
+    [SerializeField] public float VFXOffSet;
 
     [Header("References")]
     public Transform model;
@@ -73,11 +74,10 @@ public class Projectile : MonoBehaviour
     public virtual void PlayHitVFX()
     {
         if (onHitVFX == null || onHitVFX.prefab == null) return;
-
         GameObject vfx = Instantiate(onHitVFX.prefab);
 
         Vector3 pos = transform.position;
-        pos.y = 0f;
+        pos.y = VFXOffSet;
         vfx.transform.position = pos;
 
         Vector3 scale = vfx.transform.localScale;

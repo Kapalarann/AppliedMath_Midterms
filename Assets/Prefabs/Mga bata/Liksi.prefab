@@ -370,10 +370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b99f2ae1d8eab439d0c69d774007a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitFX
-  flashFadeSpeed: 10
+  flashFadeSpeed: 2
   model: {fileID: 8903119145498732503}
-  duration: 0.15
-  strength: 0.25
+  duration: 0.5
+  strength: 0.5
   falloff:
     serializedVersion: 2
     m_Curve:
