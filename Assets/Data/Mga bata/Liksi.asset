@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fa2e08c7dbb204ba7362b93254334e, type: 3}
   m_Name: Liksi
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  prefab: {fileID: 8209658035653336723, guid: f15fe788ad58f1b4bba95b72fcafc09c, type: 3}
-  maxHP: 8
-  speed: 0.09
-  goldReward: 10
-  spawnCost: 1.2
+  prefab: {fileID: 4595753392810197863, guid: 352be49c7861328418a43a52dc0d6605, type: 3}
+  maxHP: 5
+  speed: 0.05
+  goldReward: 8
+  spawnCost: 1.4
