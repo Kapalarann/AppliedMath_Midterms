@@ -526,6 +526,7 @@ MonoBehaviour:
   _range: 6
   speed: 7.672027
   speedMult: 2
+  timer: 0
   shootPoint: {fileID: 773834111}
   projectilePrefab: {fileID: 6343473548989147803, guid: a088997ede597f2409bcae1f81e3f1e1, type: 3}
   target: {fileID: 0}
@@ -641,6 +642,7 @@ MonoBehaviour:
   _range: 10
   speed: 9.904545
   speedMult: 1
+  timer: 0
   shootPoint: {fileID: 237509580}
   projectilePrefab: {fileID: 6343473548989147803, guid: 9052079795d221546b02a69dc8e3a374, type: 3}
   target: {fileID: 0}
@@ -992,19 +994,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   waves:
-  - waveData: {fileID: 11400000, guid: a0ae848ccf313164eacf38240f8844c1, type: 2}
-    startDelay: 5
+  - waveData: {fileID: 11400000, guid: 8182c1670d23fc44389d6239a235ab81, type: 2}
+    startDelay: 10
     paths:
     - {fileID: 843824401}
-  - waveData: {fileID: 11400000, guid: 968bca90979c04b4a9c70b129ed1be9b, type: 2}
-    startDelay: 5
-    paths:
-    - {fileID: 1118422744}
-  - waveData: {fileID: 11400000, guid: 2cb3869d345fac743bb351b12c7d7aba, type: 2}
-    startDelay: 5
-    paths:
-    - {fileID: 843824401}
-    - {fileID: 1118422744}
 --- !u!114 &2089340815
 MonoBehaviour:
   m_ObjectHideFlags: 0

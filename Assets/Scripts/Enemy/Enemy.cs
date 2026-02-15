@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
     [Header("Stats")]
     [SerializeField] public float maxHP;
     [SerializeField] public int goldReward;
-    private float HP;
+    public float currentHP;
 
     [Header("Movement")]
     public Path currentPath;
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
         currentPath = path;
         previousPos = transform.position;
 
-        HP = maxHP;
+        currentHP = maxHP;
     }
 
     private void FixedUpdate()
@@ -46,9 +46,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        HP -= damage;
-        Debug.Log(name + " took " + damage + " damage. Currently at: " + HP + "/" + maxHP);
-        if (HP < 0f) Destroy(gameObject);
+        currentHP -= damage;
+        Debug.Log(name + " took " + damage + " damage. Currently at: " + currentHP + "/" + maxHP);
+        if (currentHP < 0f) Destroy(gameObject);
     }
 
     private void ReachEnd()
