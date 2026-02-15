@@ -43,9 +43,7 @@ public class MouseController : MonoBehaviour
                 < s.radius)
             {
                 GameObject tower = Instantiate(t.prefab, s.transform);
-                Vector3 spawnPos = s.transform.position;
-                spawnPos.y = 1f;
-                tower.transform.position = spawnPos;
+                s.Fill();
 
                 Economy.instance.money -= t.cost;
                 Debug.Log(t.prefab.name + " placed | Money Remaining: " + Economy.instance.money);

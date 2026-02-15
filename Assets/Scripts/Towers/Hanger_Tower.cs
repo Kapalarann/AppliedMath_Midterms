@@ -9,4 +9,10 @@ public class Hanger : ITower
                 target.GetComponent<Enemy>(),
                 Speed);
     }
+
+    public override void StartAttack()
+    {
+        animator.SetTrigger("onDirect");
+        attacking = true;
+    }
 }

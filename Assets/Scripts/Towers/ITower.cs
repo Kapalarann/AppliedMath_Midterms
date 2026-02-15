@@ -12,6 +12,7 @@ public abstract class ITower : MonoBehaviour
     [SerializeField] public int pierce;
     [SerializeField] public float duration;
     [SerializeField] private float _range;
+    
     public float Range{
         get => _range;
         set
@@ -32,7 +33,22 @@ public abstract class ITower : MonoBehaviour
     [Header("References")]
     [SerializeField] public Transform shootPoint;
     [SerializeField] public GameObject projectilePrefab;
+    [SerializeField] public Animator animator;
+    [SerializeField] public AnimationReciever reciever;
+    public bool attacking = false;
     public Transform target;
+
+    private void Awake()
+    {
+        reciever.AttackFrame += Shoot;
+        reciever.AttackEnd += AnimEnd;
+    }
+
+    private void OnDestroy()
+    {
+        reciever.AttackFrame -= Shoot;
+        reciever.AttackEnd -= AnimEnd;
+    }
 
     private void OnValidate()
     {
@@ -46,9 +62,16 @@ public abstract class ITower : MonoBehaviour
         {
             AcquireTarget();
             if (target == null) return;
-            Shoot();
+            if (attacking) return;
+            StartAttack();
             timer -= cooldown;
         }
+    }
+
+    public virtual void StartAttack()
+    {
+        animator.SetTrigger("onAttack");
+        attacking = true;
     }
 
     public virtual void AcquireTarget()
@@ -69,14 +92,18 @@ public abstract class ITower : MonoBehaviour
         if(first != null) target = first.transform;
     }
 
-    public virtual void Shoot()
+    public virtual void Shoot(AnimationEvent animationEvent)
     {
         Vector3 a = target.GetComponent<Enemy>().targetPoint.position;
         Vector3 b = shootPoint.position;
         float dist = Vector3.Distance(a, b);
         if (dist > _range) return;
 
-        GameObject proj = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+        Vector3 dir = ShootDir();
+        dir.y = 0f;
+        transform.rotation = Quaternion.LookRotation(dir);
+
+        GameObject proj = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
         Projectile projectile = proj.GetComponent<Projectile>();
 
         projectile.velocity = ShootDir() * Speed * speedMult;
@@ -86,6 +113,11 @@ public abstract class ITower : MonoBehaviour
         projectile.duration = duration;
 
         projectile.SetValues();
+    }
+
+    public virtual void AnimEnd(AnimationEvent animationEvent)
+    {
+        attacking = false;
     }
 
     public virtual Vector3 ShootDir()

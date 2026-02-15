@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ public class Projectile : MonoBehaviour
     public float duration;
     public float timer;
     public bool isMoving = true;
+
+    [Header("VFX")]
+    [SerializeField] public spawnVFX onHitVFX;
 
     [Header("References")]
     public Transform model;
@@ -54,6 +58,8 @@ public class Projectile : MonoBehaviour
                 enemy.TakeDamage(damage);
                 alreadyHit.Add(enemy);
 
+                PlayHitVFX();
+
                 pierce--;
                 if (pierce <= 0)
                 {
@@ -63,4 +69,26 @@ public class Projectile : MonoBehaviour
             }
         }
     }
+
+    private void PlayHitVFX()
+    {
+        if (onHitVFX == null) return;
+
+        GameObject vfx = Instantiate(onHitVFX.prefab);
+
+        Vector3 pos = transform.position;
+        pos.y = 0f;
+        vfx.transform.position = pos;
+
+        Vector3 scale = vfx.transform.localScale;
+        scale *= onHitVFX.scaleMult;
+        vfx.transform.localScale = scale;
+    }
+}
+
+[Serializable]
+public class spawnVFX
+{
+    public GameObject prefab;
+    public float scaleMult;
 }

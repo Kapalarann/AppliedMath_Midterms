@@ -15,9 +15,16 @@ public class Bilao_Tower : ITower
         {
             AcquireTarget();
             if (targetPos == null) return;
+            if (attacking) return;
+            StartAttack();
             timer -= cooldown;
-            Shoot();
         }
+    }
+
+    public override void StartAttack()
+    {
+        animator.SetTrigger("onFrisbee");
+        attacking = true;
     }
 
     public override void AcquireTarget()
@@ -38,8 +45,12 @@ public class Bilao_Tower : ITower
             }
         }
     }
-    public override void Shoot()
+    public override void Shoot(AnimationEvent animationEvent)
     {
+        Vector3 dir = ShootDir();
+        dir.y = 0f;
+        transform.rotation = Quaternion.LookRotation(dir);
+
         GameObject proj = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
         Bilao_Projectile projectile = proj.GetComponent<Bilao_Projectile>();
 
