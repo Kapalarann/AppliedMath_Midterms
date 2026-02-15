@@ -34,7 +34,7 @@ public class EnemyHP_UI : MonoBehaviour
 
     private void Update()
     {
-        targetHP = enemy.maxHP;
+        targetHP = enemy.currentHP;
         HP_bar.value = targetHP;
 
         if (Ghost_Bar.value > targetHP)

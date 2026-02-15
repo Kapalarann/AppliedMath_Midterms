@@ -72,7 +72,7 @@ public class Projectile : MonoBehaviour
 
     private void PlayHitVFX()
     {
-        if (onHitVFX == null) return;
+        if (onHitVFX == null || onHitVFX.prefab == null) return;
 
         GameObject vfx = Instantiate(onHitVFX.prefab);
 

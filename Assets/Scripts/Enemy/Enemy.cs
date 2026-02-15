@@ -16,6 +16,12 @@ public class Enemy : MonoBehaviour
 
     [Header("References")]
     [SerializeField] public Transform targetPoint;
+    private EnemyHitFX hitFX;
+
+    private void Awake()
+    {
+        hitFX = GetComponentInChildren<EnemyHitFX>();
+    }
 
     public void Initialize(Path path)
     {
@@ -49,6 +55,8 @@ public class Enemy : MonoBehaviour
         currentHP -= damage;
         Debug.Log(name + " took " + damage + " damage. Currently at: " + currentHP + "/" + maxHP);
         if (currentHP < 0f) Destroy(gameObject);
+        if (hitFX == null) return;
+        hitFX.TriggerFlash();
     }
 
     private void ReachEnd()

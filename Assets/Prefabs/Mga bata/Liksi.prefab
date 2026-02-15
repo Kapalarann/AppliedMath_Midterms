@@ -236,6 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5873262562226335006}
   - component: {fileID: 6612132030108498521}
+  - component: {fileID: 8914206008784619336}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -357,6 +358,46 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0010640617, y: 0.001171215, z: 0.0015840688}
     m_Extent: {x: 0.0074727978, y: 0.009354539, z: 0.0045154933}
   m_DirtyAABB: 0
+--- !u!114 &8914206008784619336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499486601520483616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b99f2ae1d8eab439d0c69d774007a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitFX
+  flashFadeSpeed: 10
+  model: {fileID: 8903119145498732503}
+  duration: 0.15
+  strength: 0.25
+  falloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1557598039672663936
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHP: 0
   goldReward: 0
+  currentHP: 0
   currentPath: {fileID: 0}
   progress: 0
   speed: 0.02
