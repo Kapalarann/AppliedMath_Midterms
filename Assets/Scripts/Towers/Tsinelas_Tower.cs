@@ -4,7 +4,7 @@ public class Tsinelas : ITower
 {
     public override void StartAttack()
     {
-        animator.SetTrigger("onOverhead");
+        animator.SetTrigger("onDirect");
         attacking = true;
     }
 }

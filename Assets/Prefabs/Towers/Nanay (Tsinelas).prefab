@@ -1937,6 +1937,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394ee460b83d5d7428bc2372f3eb4c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tsinelas
+  towerDatum:
+  - {fileID: 11400000, guid: 6936fd930dfcd1e4ea86beaa179660a4, type: 2}
+  - {fileID: 11400000, guid: 212ddc567a19e864fb09c64c3c3258f6, type: 2}
+  - {fileID: 11400000, guid: 61a1064e4fa8b124d83b855c41f08674, type: 2}
+  level: 0
   prefersHighAngle: 1
   cooldown: 3
   hitRadius: 0.2

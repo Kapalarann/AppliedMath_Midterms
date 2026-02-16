@@ -9,20 +9,26 @@ public class MouseController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            PlaceTower(towerPrefabs[0]);
+            PlaceTower(0);
         }
         if (Input.GetMouseButtonDown(2))
         {
-            PlaceTower(towerPrefabs[1]);
+            PlaceTower(1);
         }
         if (Input.GetMouseButtonDown(1))
         {
-            PlaceTower(towerPrefabs[2]);
+            PlaceTower(2);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            LevelUp();
         }
     }
 
-    private void PlaceTower(TowerPacement t)
+    private void PlaceTower(int index)
     {
+        TowerPacement t = towerPrefabs[index];
+
         foreach (Space s in SpaceManager.instance.spaces) {
             if (s == null) continue;
             if (s.filled)
@@ -47,6 +53,44 @@ public class MouseController : MonoBehaviour
 
                 Economy.instance.money -= t.cost;
                 Debug.Log(t.prefab.name + " placed | Money Remaining: " + Economy.instance.money);
+            }
+        }
+    }
+
+    private void LevelUp()
+    {
+        foreach (Space s in SpaceManager.instance.spaces)
+        {
+            if (!s.filled) continue;
+
+            if (Vector3.Distance(
+                Computations.MouseToGround(Camera.main),
+                s.transform.position)
+                < s.radius)
+            {
+                ITower tower = s.GetComponentInChildren<ITower>();
+
+                int nextLevel = tower.level + 1;
+
+                if (nextLevel > tower.towerDatum.Length)
+                {
+                    Debug.Log("Tower is max level.");
+                    return;
+                }
+
+                if (tower.towerDatum[nextLevel - 1].cost > Economy.instance.money)
+                {
+                    Debug.Log("No money.");
+                    return;
+                }
+
+                Economy.instance.money -= tower.towerDatum[nextLevel - 1].cost;
+                tower.UpgradeTower();
+                
+                Debug.Log(tower.towerDatum + " upgraded to level" + tower.level 
+                    + " | Money Remaining: " + Economy.instance.money);
+
+                return;
             }
         }
     }

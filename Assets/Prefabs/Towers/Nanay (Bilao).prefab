@@ -1098,6 +1098,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845f0e74397841445a639c381bb7be77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bilao_Tower
+  towerDatum:
+  - {fileID: 11400000, guid: 8aa9f3ba13724e240b1af74a17b7208c, type: 2}
+  - {fileID: 11400000, guid: 362575cc90078da49aead9b5b412a454, type: 2}
+  - {fileID: 11400000, guid: c3f14b77eb8b01a4f9257b56c19197e7, type: 2}
+  level: 0
   prefersHighAngle: 1
   cooldown: 5
   hitRadius: 0.5

@@ -200,9 +200,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e687e8b831be6f044933548310a31f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hanger
+  towerDatum:
+  - {fileID: 11400000, guid: f2f781cf722ec2e4ca3f51d7cb879b79, type: 2}
+  - {fileID: 11400000, guid: 81f4964252257d6479cd23b100e5f433, type: 2}
+  - {fileID: 11400000, guid: ff5eb7557ab02b641aff47d278cd69ea, type: 2}
+  level: 0
   prefersHighAngle: 0
   cooldown: 2
-  hitRadius: 1.5
+  hitRadius: 1
   damage: 2
   pierce: 4
   duration: 1

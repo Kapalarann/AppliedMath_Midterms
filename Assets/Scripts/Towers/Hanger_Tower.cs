@@ -12,7 +12,7 @@ public class Hanger : ITower
 
     public override void StartAttack()
     {
-        animator.SetTrigger("onDirect");
+        animator.SetTrigger("onOverhead");
         attacking = true;
     }
 }

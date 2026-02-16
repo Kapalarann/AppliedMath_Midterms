@@ -2,7 +2,11 @@ using UnityEngine;
 
 public abstract class ITower : MonoBehaviour
 {
-    [Header("Setting")]
+    [Header("Tower Data")]
+    [SerializeField] public TowerData[] towerDatum;
+    public int level = 0;
+
+    [Header("Ballistics")]
     [SerializeField] public bool prefersHighAngle = false;
 
     [Header("Stats")]
@@ -40,6 +44,8 @@ public abstract class ITower : MonoBehaviour
 
     private void Awake()
     {
+        UpgradeTower();
+
         reciever.AttackFrame += Shoot;
         reciever.AttackEnd += AnimEnd;
     }
@@ -127,6 +133,28 @@ public abstract class ITower : MonoBehaviour
                 target.GetComponent<Enemy>(),
                 Speed,
                 prefersHighAngle);
+    }
+
+    public virtual void UpgradeTower()
+    {
+        if (level >= towerDatum.Length) return;
+        level++;
+
+        prefersHighAngle = towerDatum[level - 1].prefersHighAngle;
+
+        cooldown = towerDatum[level - 1].cooldown;
+        hitRadius = towerDatum[level - 1].hitRadius;
+        damage = towerDatum[level - 1].damage;
+        pierce = towerDatum[level - 1].pierce;
+        duration = towerDatum[level - 1].duration;
+
+        Range = towerDatum[level-1].range;
+        speedMult = towerDatum[level - 1].speedMult;
+
+        projectilePrefab = towerDatum[level - 1].projectilePrefab;
+
+        if (animator != null)
+            animator.speed = towerDatum[level - 1].animationSpeed;
     }
 
     void OnDrawGizmos()
