@@ -88,6 +88,7 @@ public class EnemySpawner : MonoBehaviour
         
         enemy.speed = enemyData.speed;
         enemy.maxHP = enemyData.maxHP;
+        enemy.damage = enemyData.damage;
         enemy.goldReward = enemyData.goldReward;
         enemy.Initialize(path);
     }

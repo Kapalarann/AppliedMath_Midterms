@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     [Header("Stats")]
     [SerializeField] public float maxHP;
     [SerializeField] public int goldReward;
+    [SerializeField] public int damage;
     public float currentHP;
 
     [SerializeField] GameObject coinPrefab;
@@ -65,7 +66,7 @@ public class Enemy : MonoBehaviour
     private void ReachEnd()
     {
         Destroy(gameObject);
-        GameUIScript.instance.SetHP(20);
+        GameUIScript.instance.SetHP(GameUIScript.instance.playerHP - damage);
     }
 
     private void OnDestroy()

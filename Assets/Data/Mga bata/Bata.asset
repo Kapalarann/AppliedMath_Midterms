@@ -16,5 +16,6 @@ MonoBehaviour:
   maxHP: 50
   speed: 0.03
   goldReward: 10
+  damage: 10
   spawnCost: 1
   delayMult: 1
