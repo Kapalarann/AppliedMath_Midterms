@@ -8,8 +8,11 @@ public class MenuManager : MonoBehaviour
     [Header("References")]
     public CameraPan cameraPan; // Reference your CameraPan script here
 
+    private bool Activated;
+
     void Update()
     {
+        if (Activated) return;
         // Check for any mouse button click
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
         {
@@ -29,8 +32,10 @@ public class MenuManager : MonoBehaviour
     {
         foreach (GameObject item in toActivate)
         {
-            if (item != null) continue;
+            if (item == null) continue;
             item.SetActive(true);
         }
+
+        Activated = true;
     }
 }
