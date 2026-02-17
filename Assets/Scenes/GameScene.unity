@@ -3647,6 +3647,34 @@ MonoBehaviour:
     pathWaves:
     - path: {fileID: 843824401}
       waveData: {fileID: 11400000, guid: e4aa37b0f52f6a94e90c8bc7173155bc, type: 2}
+  - startDelay: 10
+    pathWaves:
+    - path: {fileID: 843824401}
+      waveData: {fileID: 11400000, guid: 433724a24635aa94db99c81076839617, type: 2}
+    - path: {fileID: 1118422744}
+      waveData: {fileID: 11400000, guid: db642dc5d1ea21a4ab994c33c592f672, type: 2}
+  - startDelay: 10
+    pathWaves:
+    - path: {fileID: 843824401}
+      waveData: {fileID: 11400000, guid: ec12e39cbee8bc24682975b71a6381d7, type: 2}
+    - path: {fileID: 1118422744}
+      waveData: {fileID: 11400000, guid: 95a66e8496216224580f281dc01adf6f, type: 2}
+  - startDelay: 10
+    pathWaves:
+    - path: {fileID: 843824401}
+      waveData: {fileID: 11400000, guid: df3d878252ad1454c81e776a540f7003, type: 2}
+    - path: {fileID: 1118422744}
+      waveData: {fileID: 11400000, guid: 0ea06f53c98d02f43a7d3c01ca961ab4, type: 2}
+  - startDelay: 10
+    pathWaves:
+    - path: {fileID: 843824401}
+      waveData: {fileID: 11400000, guid: ae07fc72f2e9a35458b97cc09379abb4, type: 2}
+  - startDelay: 10
+    pathWaves:
+    - path: {fileID: 843824401}
+      waveData: {fileID: 11400000, guid: c9e257c37e6cf444f86d9e969057cc6a, type: 2}
+    - path: {fileID: 1118422744}
+      waveData: {fileID: 11400000, guid: ac5dbe0afaa4c2a45be9a0b52f32821e, type: 2}
 --- !u!114 &2089340815
 MonoBehaviour:
   m_ObjectHideFlags: 0
