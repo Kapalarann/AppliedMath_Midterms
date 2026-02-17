@@ -58,7 +58,10 @@ public class Enemy : MonoBehaviour
     {
         currentHP -= damage;
         Debug.Log(name + " took " + damage + " damage. Currently at: " + currentHP + "/" + maxHP);
-        if (currentHP <= 0f) Destroy(gameObject);
+        if (currentHP <= 0f) {
+            Destroy(gameObject);
+            DropCoins();
+        }  
         if (hitFX == null) return;
         hitFX.TriggerFlash();
     }
@@ -66,13 +69,13 @@ public class Enemy : MonoBehaviour
     private void ReachEnd()
     {
         Destroy(gameObject);
-        GameUIScript.instance.SetHP(GameUIScript.instance.playerHP - damage);
+        GameUIScript.instance.dmgHP(damage);
     }
 
     private void OnDestroy()
     {
         EnemyManager.instance.removeEnemy(this);
-        DropCoins();
+        
     }
 
 

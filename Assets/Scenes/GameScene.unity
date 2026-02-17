@@ -756,6 +756,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -881,6 +882,18 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cdbf5cba6cbb3b4ab5ddfa2d06cb90e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &361904481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1712,6 +1725,14 @@ PrefabInstance:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 4793259866030491056, guid: 61e8bcc07511bb74098196223c4214c5, type: 3}
+      propertyPath: playerUI
+      value: 
+      objectReference: {fileID: 1590109603}
+    - target: {fileID: 4793259866030491056, guid: 61e8bcc07511bb74098196223c4214c5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5791104221457332769, guid: 61e8bcc07511bb74098196223c4214c5, type: 3}
       propertyPath: m_Name
       value: GameUI
@@ -2470,6 +2491,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3992336434703108211, guid: d324aba0b45c08944a3246d40816be77, type: 3}
   m_PrefabInstance: {fileID: 1375556558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1590109603 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 2708974558126568440, guid: 61e8bcc07511bb74098196223c4214c5, type: 3}
+  m_PrefabInstance: {fileID: 953277534}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1645861077
 GameObject:

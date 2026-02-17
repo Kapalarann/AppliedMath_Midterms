@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Sirenix.OdinInspector;
 
 public class GameUIScript : MonoBehaviour
 {
@@ -27,7 +28,9 @@ public class GameUIScript : MonoBehaviour
     public float shakeDuration = 0.2f;
     public float shakeStrength = 10f;
 
+ 
     private Vector3 currencyOriginalPos;
+
     private float lastCurrency;
 
     public static GameUIScript instance;
@@ -105,6 +108,8 @@ public class GameUIScript : MonoBehaviour
         currencyUI.rectTransform.anchoredPosition = currencyOriginalPos;
     }
 
+    
+
     void UpdateCurrencyInstant()
     {
         displayedCurrency = currency;
@@ -119,6 +124,12 @@ public class GameUIScript : MonoBehaviour
     public void SetHP(float hp)
     {
         playerHP = hp;
+    }
+
+    public void dmgHP(float dmg)
+    {
+        playerHP -= dmg;
+        CameraShake.instance.Shake(0.2f, 0.5f);
     }
 
     public void AddCurrency(float amount)
