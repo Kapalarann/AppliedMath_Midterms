@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 
 public class GameUIScript : MonoBehaviour
 {
@@ -53,12 +54,16 @@ public class GameUIScript : MonoBehaviour
         currencyOriginalPos = currencyUI.rectTransform.anchoredPosition;
         lastCurrency = currency;
 
+        currency = Economy.instance.money;
+
         UpdateWaveUI();
         UpdateCurrencyInstant();
     }
 
+
     void Update()
     {
+        currency = Economy.instance.money;
         AnimateCurrency();
         AnimateHP();
 
@@ -134,7 +139,7 @@ public class GameUIScript : MonoBehaviour
 
     public void AddCurrency(float amount)
     {
-        currency += amount;
+        Economy.instance.money += amount;
     }
 
     public void SetWave(int newWave)

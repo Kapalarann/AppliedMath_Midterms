@@ -4,7 +4,7 @@ public class Economy : MonoBehaviour
 {
     public static Economy instance;
 
-    public int money;
+    public float money;
     public bool unlimitedMoney = false;
 
     private void Awake()
@@ -12,7 +12,7 @@ public class Economy : MonoBehaviour
         instance = this;
     }
 
-    public void SpendMoney(int cost)
+    public void SpendMoney(float cost)
     {
         if (unlimitedMoney) return;
         money -= cost;
