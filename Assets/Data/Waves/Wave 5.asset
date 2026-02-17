@@ -16,4 +16,3 @@ MonoBehaviour:
   spawnBudget: 10
   possibleEnemies:
   - {fileID: 11400000, guid: d0851be15119ea64f8878123f3056367, type: 2}
-  - {fileID: 11400000, guid: 35e054b7e04f33f42841e294a48bb85a, type: 2}

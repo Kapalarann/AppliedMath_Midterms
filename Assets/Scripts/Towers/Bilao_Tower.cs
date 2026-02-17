@@ -14,7 +14,7 @@ public class Bilao_Tower : ITower
         if (timer >= cooldown)
         {
             AcquireTarget();
-            if (targetPos == null) return;
+            if (target == null) return;
             if (attacking) return;
             StartAttack();
             timer -= cooldown;

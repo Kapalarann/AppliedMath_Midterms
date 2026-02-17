@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
     {
         currentHP -= damage;
         Debug.Log(name + " took " + damage + " damage. Currently at: " + currentHP + "/" + maxHP);
-        if (currentHP < 0f) Destroy(gameObject);
+        if (currentHP <= 0f) Destroy(gameObject);
         if (hitFX == null) return;
         hitFX.TriggerFlash();
     }

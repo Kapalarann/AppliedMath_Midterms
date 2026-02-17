@@ -15,4 +15,4 @@ MonoBehaviour:
   spawnDelay: {x: 2, y: 3}
   spawnBudget: 10
   possibleEnemies:
-  - {fileID: 11400000, guid: 35e054b7e04f33f42841e294a48bb85a, type: 2}
+  - {fileID: 11400000, guid: ec9d9695e603ea74ca875f313b47ed21, type: 2}

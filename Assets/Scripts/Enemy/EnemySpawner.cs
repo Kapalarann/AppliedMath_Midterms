@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
                 (wave.waveData.spawnDelay.x,
                 wave.waveData.spawnDelay.y,
                 Random.Range(0f,1f))
-                * enemy.spawnCost
+                * enemy.delayMult
                 );
         }
     }

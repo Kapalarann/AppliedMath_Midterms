@@ -667,7 +667,7 @@ Transform:
   m_GameObject: {fileID: 3948366827746616253}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.332, z: 1}
+  m_LocalPosition: {x: -0.015, y: 1.332, z: 1.806}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   pierce: 6
   duration: 15
   _range: 5
-  speed: 7.0035706
+  speed: 7.6615925
   speedMult: 1
   timer: 0
   shootPoint: {fileID: 2528164569849461502}

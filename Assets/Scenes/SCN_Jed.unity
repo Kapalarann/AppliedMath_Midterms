@@ -2947,11 +2947,11 @@ MonoBehaviour:
     - {fileID: 843824401}
     - {fileID: 1118422744}
   - waveData: {fileID: 11400000, guid: 8182c1670d23fc44389d6239a235ab81, type: 2}
-    startDelay: 15
+    startDelay: 10
     paths:
     - {fileID: 1118422744}
   - waveData: {fileID: 11400000, guid: e4aa37b0f52f6a94e90c8bc7173155bc, type: 2}
-    startDelay: 15
+    startDelay: 10
     paths:
     - {fileID: 843824401}
     - {fileID: 1118422744}
@@ -2968,6 +2968,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   enemies: []
+--- !u!1 &2144588227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2144588228}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2144588228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144588227}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.731666, y: 1.966, z: -2.7865365}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3310742392824876214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3038,3 +3069,4 @@ SceneRoots:
   - {fileID: 1092830656}
   - {fileID: 2007030345}
   - {fileID: 1815716607}
+  - {fileID: 2144588228}

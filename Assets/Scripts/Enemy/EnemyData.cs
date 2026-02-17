@@ -8,4 +8,5 @@ public class EnemyData : ScriptableObject
     [Range(0f, 0.1f)] public float speed = 0.03f;     // Movement speed
     public int goldReward = 10;   // Gold given when killed
     public float spawnCost = 1f;    // Cost to spawn this enemy
+    public float delayMult = 1f;
 }

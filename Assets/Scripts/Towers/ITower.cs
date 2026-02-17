@@ -22,7 +22,7 @@ public abstract class ITower : MonoBehaviour
         set
         {
             _range = value;
-            Speed = Mathf.Sqrt(_range * gravity); // v = sqrt(R * g)
+            Speed = Mathf.Sqrt(_range * -Physics.gravity.y); // v = sqrt(R * g)
         }}
     [SerializeField] private float speed;
     public float Speed{
@@ -30,7 +30,6 @@ public abstract class ITower : MonoBehaviour
         private set => speed = value; // optional: read-only from outside
     }
     public float speedMult = 1f;
-    private float gravity = 9.81f;
 
     public float timer;
 
@@ -58,7 +57,7 @@ public abstract class ITower : MonoBehaviour
 
     private void OnValidate()
     {
-        Speed = Mathf.Sqrt(_range * gravity);
+        Speed = Mathf.Sqrt(_range * -Physics.gravity.y);
     }
 
     public virtual void FixedUpdate()
@@ -87,7 +86,7 @@ public abstract class ITower : MonoBehaviour
 
         foreach (Enemy e in EnemyManager.instance.enemies)
         {
-            if (Vector3.Distance(e.targetPoint.position, shootPoint.position) <= Range && // within range
+            if (Vector3.Distance(e.targetPoint.position, transform.position) <= Range && // within range
                 e.progress > firstProg) // & farthest progress
             {
                 first = e;
@@ -100,8 +99,16 @@ public abstract class ITower : MonoBehaviour
 
     public virtual void Shoot(AnimationEvent animationEvent)
     {
+        AcquireTarget();
+
+        if (target == null)
+        {
+            attacking = false;
+            return;
+        }
+
         Vector3 a = target.GetComponent<Enemy>().targetPoint.position;
-        Vector3 b = shootPoint.position;
+        Vector3 b = transform.position;
         float dist = Vector3.Distance(a, b);
         if (dist > _range) return;
 
@@ -160,6 +167,6 @@ public abstract class ITower : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(shootPoint.position, _range);
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 }
