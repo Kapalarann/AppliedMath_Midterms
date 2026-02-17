@@ -29,7 +29,16 @@ public class GameUIScript : MonoBehaviour
     public float shakeDuration = 0.2f;
     public float shakeStrength = 10f;
 
- 
+    [Header("Pause UI")]
+    public Canvas pauseCanvas;
+    public RectTransform pauseRoot;
+    public float pauseScaleLerpSpeed = 12f;
+
+    bool isPause;
+
+    private Vector3 pauseTargetScale;
+    private bool isPauseAnimating;
+
     private Vector3 currencyOriginalPos;
 
     private float lastCurrency;
@@ -43,6 +52,11 @@ public class GameUIScript : MonoBehaviour
 
     void Start()
     {
+
+        pauseCanvas.enabled = false;
+        pauseRoot.localScale = Vector3.zero;
+        pauseTargetScale = Vector3.zero;
+
         displayedCurrency = currency;
         displayedHP = playerHP;
 
@@ -66,11 +80,17 @@ public class GameUIScript : MonoBehaviour
         currency = Economy.instance.money;
         AnimateCurrency();
         AnimateHP();
+        AnimatePausePanel();
 
         if (currency != lastCurrency)
         {
             StartCoroutine(ShakeCurrency());
             lastCurrency = currency;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
         }
     }
 
@@ -113,7 +133,63 @@ public class GameUIScript : MonoBehaviour
         currencyUI.rectTransform.anchoredPosition = currencyOriginalPos;
     }
 
-    
+    void AnimatePausePanel()
+    {
+        if (!isPauseAnimating) return;
+
+        pauseRoot.localScale = Vector3.Lerp(
+            pauseRoot.localScale,
+            pauseTargetScale,
+            Time.unscaledDeltaTime * pauseScaleLerpSpeed
+        );
+
+        if (Vector3.Distance(pauseRoot.localScale, pauseTargetScale) < 0.01f)
+        {
+            pauseRoot.localScale = pauseTargetScale;
+            isPauseAnimating = false;
+
+            if (pauseTargetScale == Vector3.zero)
+                pauseCanvas.enabled = false;
+        }
+
+        
+    }
+
+    void TogglePause()
+    {
+        isPause = !isPause;
+
+        if (isPause)
+        {
+            OpenPauseUI();
+        }
+        else
+        {
+            ClosePauseUI();
+        }
+
+    }
+
+    public void OpenPauseUI()
+    {
+        isPause = true;
+        pauseCanvas.enabled = true;
+
+        pauseRoot.localScale = Vector3.zero;
+        pauseTargetScale = Vector3.one;
+        isPauseAnimating = true;
+
+        Time.timeScale = 0f;
+    }
+
+    public void ClosePauseUI()
+    {
+        isPause = false;
+        pauseTargetScale = Vector3.zero;
+        isPauseAnimating = true;
+
+        Time.timeScale = 1f;
+    }
 
     void UpdateCurrencyInstant()
     {
