@@ -1,0 +1,21 @@
+OVDF v1.1
+GameUIScript, Assembly-CSharp
+MetaGuid:6198516d4252cf94a91abf6023010fa7
+
+# shakeDuration
+Position: $root:3
+
+# currencyUI
+Position: $root:5
+
+# shakeStrength
+Position: $root:2
+
+# currencyLerpSpeed
+Position: $root:6
+
+# currency
+Position: $root:1
+
+# Wave
+Position: $root:9
