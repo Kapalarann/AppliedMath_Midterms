@@ -15,6 +15,6 @@ MonoBehaviour:
   prefab: {fileID: 4780735978950228973, guid: 63b43138129913b44a13a0813b08d03a, type: 3}
   maxHP: 500
   speed: 0.015
-  goldReward: 25
+  goldReward: 30
   spawnCost: 10
   delayMult: 5
