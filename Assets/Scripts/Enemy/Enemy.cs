@@ -64,8 +64,8 @@ public class Enemy : MonoBehaviour
 
     private void ReachEnd()
     {
-        Destroy(gameObject); 
-        //player take damage
+        Destroy(gameObject);
+        GameUIScript.instance.SetHP(20);
     }
 
     private void OnDestroy()

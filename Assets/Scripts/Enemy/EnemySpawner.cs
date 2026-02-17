@@ -5,9 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public Wave[] waves;
-    private int currentWave = 1;
-    private float currentBudget;
-
+    private int currentWave;
     private void Start()
     {
         StartCoroutine(RunWaves());
@@ -31,7 +29,8 @@ public class EnemySpawner : MonoBehaviour
             Coroutine c = StartCoroutine(SpawnPath(pathWave));
             runningPaths.Add(c);
         }
-        
+        currentWave += 1;
+        GameUIScript.instance.SetWave(currentWave);
         // Wait for all paths to finish spawning
         foreach (var c in runningPaths)
             yield return c;
