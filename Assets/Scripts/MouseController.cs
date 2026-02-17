@@ -44,14 +44,14 @@ public class MouseController : MonoBehaviour
             }
 
             if (Vector3.Distance(
-                Computations.MouseToGround(Camera.main),
+                Computations.MouseToGround(Camera.main, s.transform.position.y),
                 s.transform.position)
                 < s.radius)
             {
                 GameObject tower = Instantiate(t.prefab, s.transform);
                 s.Fill();
 
-                Economy.instance.money -= t.cost;
+                Economy.instance.SpendMoney(t.cost);
                 Debug.Log(t.prefab.name + " placed | Money Remaining: " + Economy.instance.money);
             }
         }
@@ -64,7 +64,7 @@ public class MouseController : MonoBehaviour
             if (!s.filled) continue;
 
             if (Vector3.Distance(
-                Computations.MouseToGround(Camera.main),
+                Computations.MouseToGround(Camera.main, s.transform.position.y),
                 s.transform.position)
                 < s.radius)
             {
@@ -84,7 +84,7 @@ public class MouseController : MonoBehaviour
                     return;
                 }
 
-                Economy.instance.money -= tower.towerDatum[nextLevel - 1].cost;
+                Economy.instance.SpendMoney(tower.towerDatum[nextLevel - 1].cost);
                 tower.UpgradeTower();
                 
                 Debug.Log(tower.towerDatum + " upgraded to level" + tower.level 

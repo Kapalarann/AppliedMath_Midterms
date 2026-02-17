@@ -201,11 +201,11 @@ public static class Computations
         return Quaternion.Euler(0f, 0f, 0f);
     }
 
-    public static Vector3 MouseToGround(Camera cam)
+    public static Vector3 MouseToGround(Camera cam, float yHeight)
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        float t = -ray.origin.y / ray.direction.y;
+        float t = (yHeight - ray.origin.y) / ray.direction.y;
         return ray.origin + ray.direction * t;
     }
 }

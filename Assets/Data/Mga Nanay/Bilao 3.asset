@@ -17,9 +17,9 @@ MonoBehaviour:
   animationSpeed: 2
   hitRadius: 0.5
   damage: 1
-  pierce: 10
+  pierce: 45
   duration: 20
   range: 5
   speedMult: 1
   prefersHighAngle: 1
-  cost: 40
+  cost: 80

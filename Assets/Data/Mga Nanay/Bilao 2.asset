@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Bilao 2
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
   projectilePrefab: {fileID: 6343473548989147803, guid: 019469c98452e4b49a88ce21944b4f2f, type: 3}
-  cooldown: 5
+  cooldown: 4
   animationSpeed: 1
   hitRadius: 0.5
   damage: 1
-  pierce: 10
+  pierce: 30
   duration: 20
   range: 5
   speedMult: 1
   prefersHighAngle: 1
-  cost: 30
+  cost: 55

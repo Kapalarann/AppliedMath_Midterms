@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Hanger 2
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
   projectilePrefab: {fileID: 6343473548989147803, guid: a088997ede597f2409bcae1f81e3f1e1, type: 3}
-  cooldown: 2
+  cooldown: 1.5
   animationSpeed: 1
   hitRadius: 1.5
-  damage: 2
-  pierce: 8
+  damage: 5
+  pierce: 6
   duration: 1
   range: 7
-  speedMult: 2.25
+  speedMult: 1.5
   prefersHighAngle: 0
-  cost: 15
+  cost: 20

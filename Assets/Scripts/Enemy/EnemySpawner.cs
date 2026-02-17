@@ -23,34 +23,49 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnWave(Wave wave)
     {
-        currentBudget = wave.waveData.spawnBudget;
+        List<Coroutine> runningPaths = new List<Coroutine>();
 
-        while (currentBudget > 0)
+        foreach (var pathWave in wave.pathWaves)
         {
-            EnemyData enemy = PickAffordableEnemy(wave.waveData);
+            Coroutine c = StartCoroutine(SpawnPath(pathWave));
+            runningPaths.Add(c);
+        }
+
+        // Wait for all paths to finish spawning
+        foreach (var c in runningPaths)
+            yield return c;
+    }
+
+    private IEnumerator SpawnPath(PathWave pathWave)
+    {
+        float budget = pathWave.waveData.spawnBudget;
+
+        while (budget > 0)
+        {
+            EnemyData enemy = PickAffordableEnemy(pathWave.waveData, budget);
             if (enemy == null)
                 yield break;
 
-            Path path = PickPath(wave.paths);
-            SpawnEnemy(enemy, path);
+            SpawnEnemy(enemy, pathWave.path);
+            budget -= enemy.spawnCost;
 
-            currentBudget -= enemy.spawnCost;
-            yield return new WaitForSeconds(Mathf.Lerp
-                (wave.waveData.spawnDelay.x,
-                wave.waveData.spawnDelay.y,
-                Random.Range(0f,1f))
-                * enemy.delayMult
-                );
+            yield return new WaitForSeconds(
+                Mathf.Lerp(
+                    pathWave.waveData.spawnDelay.x,
+                    pathWave.waveData.spawnDelay.y,
+                    Random.Range(0f, 1f)
+                ) * enemy.delayMult
+            );
         }
     }
 
-    private EnemyData PickAffordableEnemy(WaveData waveData)
+    private EnemyData PickAffordableEnemy(WaveData waveData, float budget)
     {
         List<EnemyData> affordable = new List<EnemyData>();
 
         foreach (var enemy in waveData.possibleEnemies)
         {
-            if (enemy.spawnCost <= currentBudget)
+            if (enemy.spawnCost <= budget)
                 affordable.Add(enemy);
         }
 
@@ -58,17 +73,6 @@ public class EnemySpawner : MonoBehaviour
             return null;
 
         return affordable[Random.Range(0, affordable.Count)];
-    }
-
-    private Path PickPath(Path[] paths)
-    {
-        if (paths == null || paths.Length == 0)
-        {
-            Debug.LogWarning("Wave has no paths assigned!");
-            return null;
-        }
-
-        return paths[Random.Range(0, paths.Length)];
     }
 
     private void SpawnEnemy(EnemyData enemyData, Path path)
@@ -90,13 +94,18 @@ public class EnemySpawner : MonoBehaviour
 }
 
 [System.Serializable]
+public class PathWave
+{
+    public Path path;
+    public WaveData waveData;
+}
+
+[System.Serializable]
 public class Wave
 {
-    public WaveData waveData;
-
     [Tooltip("Delay before this wave starts")]
     public float startDelay = 10f;
 
-    [Tooltip("Paths available for this wave")]
-    public Path[] paths;
+    [Tooltip("Each path runs its own WaveData")]
+    public PathWave[] pathWaves;
 }

@@ -25,11 +25,13 @@ public class Bilao_Projectile : Projectile
 
             if (Vector3.Distance(a, b) <= hitRadius)
             {
-                enemy.TakeDamage(damage);
+                int dam = Mathf.Min((int)enemy.currentHP, pierce);
+
+                enemy.TakeDamage(dam);
 
                 PlayHitVFX();
 
-                pierce--;
+                pierce -= dam;
                 if (pierce <= 0)
                 {
                     Destroy(gameObject);

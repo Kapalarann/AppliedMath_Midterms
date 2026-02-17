@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b90a4843f8725f74fb90532e40cadde8, type: 3}
-  m_Name: Wave 1
+  m_Name: Wave 5-P1
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   spawnDelay: {x: 2, y: 3}
   spawnBudget: 10
   possibleEnemies:
-  - {fileID: 11400000, guid: d0851be15119ea64f8878123f3056367, type: 2}
+  - {fileID: 11400000, guid: ec9d9695e603ea74ca875f313b47ed21, type: 2}

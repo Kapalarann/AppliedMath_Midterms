@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Economy
   money: 100
+  unlimitedMoney: 0
 --- !u!114 &58475405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,9 +167,9 @@ MonoBehaviour:
   - prefab: {fileID: 299926415667137852, guid: 14ce81e622175ee4f8d827957d4ca382, type: 3}
     cost: 10
   - prefab: {fileID: 9140237300061840705, guid: 88e7d2badafc2e440b907d10e6429e51, type: 3}
-    cost: 15
-  - prefab: {fileID: 6788599186799513861, guid: c282d266d8178db4d8e745830df7e690, type: 3}
     cost: 20
+  - prefab: {fileID: 6788599186799513861, guid: c282d266d8178db4d8e745830df7e690, type: 3}
+    cost: 30
 --- !u!4 &58475406
 Transform:
   m_ObjectHideFlags: 0
@@ -805,7 +806,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -829,13 +830,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.82, y: 12.871, z: -12.85}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: -1.5265137, y: 15.608673, z: -10.584641}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2933,28 +2934,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   waves:
-  - waveData: {fileID: 11400000, guid: a0ae848ccf313164eacf38240f8844c1, type: 2}
-    startDelay: 3
-    paths:
-    - {fileID: 843824401}
-  - waveData: {fileID: 11400000, guid: 968bca90979c04b4a9c70b129ed1be9b, type: 2}
-    startDelay: 5
-    paths:
-    - {fileID: 1118422744}
-  - waveData: {fileID: 11400000, guid: 2cb3869d345fac743bb351b12c7d7aba, type: 2}
-    startDelay: 7
-    paths:
-    - {fileID: 843824401}
-    - {fileID: 1118422744}
-  - waveData: {fileID: 11400000, guid: 8182c1670d23fc44389d6239a235ab81, type: 2}
-    startDelay: 10
-    paths:
-    - {fileID: 1118422744}
-  - waveData: {fileID: 11400000, guid: e4aa37b0f52f6a94e90c8bc7173155bc, type: 2}
-    startDelay: 10
-    paths:
-    - {fileID: 843824401}
-    - {fileID: 1118422744}
+  - startDelay: 3
+    pathWaves:
+    - path: {fileID: 843824401}
+      waveData: {fileID: 11400000, guid: a0ae848ccf313164eacf38240f8844c1, type: 2}
+  - startDelay: 5
+    pathWaves:
+    - path: {fileID: 843824401}
+      waveData: {fileID: 11400000, guid: 968bca90979c04b4a9c70b129ed1be9b, type: 2}
+  - startDelay: 7
+    pathWaves:
+    - path: {fileID: 1118422744}
+      waveData: {fileID: 11400000, guid: 34e191728dc797249a7759fb9011d485, type: 2}
+  - startDelay: 10
+    pathWaves:
+    - path: {fileID: 1118422744}
+      waveData: {fileID: 11400000, guid: 2cb3869d345fac743bb351b12c7d7aba, type: 2}
+    - path: {fileID: 1118422744}
+      waveData: {fileID: 11400000, guid: 8182c1670d23fc44389d6239a235ab81, type: 2}
+  - startDelay: 10
+    pathWaves:
+    - path: {fileID: 843824401}
+      waveData: {fileID: 11400000, guid: e4aa37b0f52f6a94e90c8bc7173155bc, type: 2}
 --- !u!114 &2089340815
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Tsinelas 3
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
   projectilePrefab: {fileID: 6343473548989147803, guid: 59cf85747d6c0eb4cb304fb78d6f01ed, type: 3}
-  cooldown: 2.5
-  animationSpeed: 1.5
+  cooldown: 3
+  animationSpeed: 1
   hitRadius: 0.4
-  damage: 10
+  damage: 50
   pierce: 1
   duration: 4
   range: 15
   speedMult: 1
   prefersHighAngle: 0
-  cost: 30
+  cost: 65

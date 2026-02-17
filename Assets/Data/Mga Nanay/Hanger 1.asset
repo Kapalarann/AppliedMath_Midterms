@@ -16,10 +16,10 @@ MonoBehaviour:
   cooldown: 2
   animationSpeed: 1
   hitRadius: 1
-  damage: 2
+  damage: 5
   pierce: 4
   duration: 1
   range: 6
-  speedMult: 2
+  speedMult: 1.25
   prefersHighAngle: 0
   cost: 0
