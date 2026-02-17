@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class GameUIScript : MonoBehaviour
 {
@@ -168,6 +169,17 @@ public class GameUIScript : MonoBehaviour
             ClosePauseUI();
         }
 
+    }
+
+    public void restartScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitScene()
+    {
+        Application.Quit();
     }
 
     public void OpenPauseUI()

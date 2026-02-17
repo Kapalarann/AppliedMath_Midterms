@@ -90,7 +90,7 @@ MonoBehaviour:
   isMoving: 1
   onHitVFX:
     prefab: {fileID: 1211918642004935604, guid: 156f9e1459c645440a5f593b960b4821, type: 3}
-    scaleMult: 0.01
+    scaleMult: 1
   VFXOffSet: 1
   model: {fileID: 6903375943716552925}
   alreadyHit: []
