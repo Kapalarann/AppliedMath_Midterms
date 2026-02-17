@@ -51,7 +51,7 @@ public class Bilao_Tower : ITower
         dir.y = 0f;
         transform.rotation = Quaternion.LookRotation(dir);
 
-        GameObject proj = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+        GameObject proj = ObjectPool.Instance.Dequeue(projectileTag, shootPoint.position, Quaternion.identity);
         Bilao_Projectile projectile = proj.GetComponent<Bilao_Projectile>();
 
         projectile.velocity = ShootDir() * Speed * speedMult;

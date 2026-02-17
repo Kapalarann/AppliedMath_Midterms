@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &837855365719306649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5155542085049290691}
+  - component: {fileID: 402772207308361826}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5155542085049290691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837855365719306649}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.59628, y: 0, z: -2.59849}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &402772207308361826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837855365719306649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353de5cc5e13f084d8b2bf67aa35c2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
+  poolItems:
+  - itemTag: Tsinelas1
+    prefab: {fileID: 6343473548989147803, guid: 4c9de9c9f201dba4c95638464bfd2cc0, type: 3}
+    initialSize: 5
+    expandable: 1
+  - itemTag: Tsinelas2
+    prefab: {fileID: 6343473548989147803, guid: 9052079795d221546b02a69dc8e3a374, type: 3}
+    initialSize: 5
+    expandable: 1
+  - itemTag: Tsinelas3
+    prefab: {fileID: 6343473548989147803, guid: 59cf85747d6c0eb4cb304fb78d6f01ed, type: 3}
+    initialSize: 5
+    expandable: 1
+  - itemTag: Hanger1
+    prefab: {fileID: 6343473548989147803, guid: 784639c0ada2fec4eaa25c00b1d63b2a, type: 3}
+    initialSize: 5
+    expandable: 1
+  - itemTag: Hanger2
+    prefab: {fileID: 6343473548989147803, guid: a088997ede597f2409bcae1f81e3f1e1, type: 3}
+    initialSize: 5
+    expandable: 1
+  - itemTag: Hanger3
+    prefab: {fileID: 6343473548989147803, guid: 575d3be8db5a2c7428e3db92419f5bcc, type: 3}
+    initialSize: 5
+    expandable: 1
+  - itemTag: Bilao1
+    prefab: {fileID: 6343473548989147803, guid: 019469c98452e4b49a88ce21944b4f2f, type: 3}
+    initialSize: 6
+    expandable: 1
+  - itemTag: Bata
+    prefab: {fileID: 571204882799695521, guid: a58c62e9f71e6b8478702a1431ce24b5, type: 3}
+    initialSize: 10
+    expandable: 1
+  - itemTag: Liksi
+    prefab: {fileID: 4595753392810197863, guid: 352be49c7861328418a43a52dc0d6605, type: 3}
+    initialSize: 10
+    expandable: 1
+  - itemTag: Tatay
+    prefab: {fileID: 4780735978950228973, guid: 63b43138129913b44a13a0813b08d03a, type: 3}
+    initialSize: 3
+    expandable: 1

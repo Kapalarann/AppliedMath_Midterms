@@ -10,6 +10,7 @@ public abstract class ITower : MonoBehaviour
     [SerializeField] public bool prefersHighAngle = false;
 
     [Header("Stats")]
+    [SerializeField] public string projectileTag;
     [SerializeField] public float cooldown;
     [SerializeField] public float hitRadius;
     [SerializeField] public float damage;
@@ -35,7 +36,6 @@ public abstract class ITower : MonoBehaviour
 
     [Header("References")]
     [SerializeField] public Transform shootPoint;
-    [SerializeField] public GameObject projectilePrefab;
     [SerializeField] public Animator animator;
     [SerializeField] public AnimationReciever reciever;
     public bool attacking = false;
@@ -66,7 +66,7 @@ public abstract class ITower : MonoBehaviour
         if(timer >= cooldown)
         {
             AcquireTarget();
-            if (target == null) return;
+            if (target == null || !target.gameObject.activeSelf) return;
             if (attacking) return;
             StartAttack();
             timer -= cooldown;
@@ -101,7 +101,7 @@ public abstract class ITower : MonoBehaviour
     {
         AcquireTarget();
 
-        if (target == null)
+        if (target == null || !target.gameObject.activeSelf)
         {
             attacking = false;
             return;
@@ -116,9 +116,10 @@ public abstract class ITower : MonoBehaviour
         dir.y = 0f;
         transform.rotation = Quaternion.LookRotation(dir);
 
-        GameObject proj = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+        GameObject proj = ObjectPool.Instance.Dequeue(projectileTag, shootPoint.position, Quaternion.identity);
         Projectile projectile = proj.GetComponent<Projectile>();
 
+        projectile.projectileTag = projectileTag;
         projectile.velocity = ShootDir() * Speed * speedMult;
         projectile.hitRadius = hitRadius;
         projectile.damage = damage;
@@ -158,7 +159,7 @@ public abstract class ITower : MonoBehaviour
         Range = towerDatum[level-1].range;
         speedMult = towerDatum[level - 1].speedMult;
 
-        projectilePrefab = towerDatum[level - 1].projectilePrefab;
+        projectileTag = towerDatum[level - 1].projectileTag;
 
         if (animator != null)
             animator.speed = towerDatum[level - 1].animationSpeed;

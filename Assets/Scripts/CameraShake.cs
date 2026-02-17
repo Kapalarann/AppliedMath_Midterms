@@ -5,20 +5,16 @@ public class CameraShake : MonoBehaviour
 {
     public static CameraShake instance;
 
-    private Vector3 originalPos;
+    public Vector3 originalPos;
 
     void Awake()
     {
         instance = this;
     }
 
-    void OnEnable()
-    {
-        originalPos = transform.localPosition;
-    }
-
     public void Shake(float duration, float strength)
     {
+        originalPos = transform.position;
         StartCoroutine(ShakeRoutine(duration, strength));
     }
 

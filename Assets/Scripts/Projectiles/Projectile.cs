@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     public Vector3 rotationSpeed;
 
     [Header("Stats")]
+    public string projectileTag;
     public float hitRadius;
     public float damage;
     public int pierce;
@@ -17,6 +18,7 @@ public class Projectile : MonoBehaviour
     public float duration;
     public float timer;
     public bool isMoving = true;
+    public int currentPierce;
 
     [Header("VFX")]
     [SerializeField] public spawnVFX onHitVFX;
@@ -29,13 +31,16 @@ public class Projectile : MonoBehaviour
     public virtual void SetValues()
     {
         timer = duration;
-        Destroy(gameObject, duration);
+        currentPierce = pierce;
+        alreadyHit.Clear();
 
         if (rotatesTowards) model.rotation *= Computations.rotateYawTowardsVelocity(velocity);
     }
 
     public virtual void FixedUpdate()
     {
+        if (timer <= 0f) Des();
+
         if(!isMoving) return;
         if(usesGravity) velocity += Physics.gravity * Time.fixedDeltaTime;
         timer -= Time.fixedDeltaTime;
@@ -51,7 +56,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void CheckEnemy()
     {
-        foreach (var enemy in EnemyManager.instance.enemies)
+        foreach (Enemy enemy in EnemyManager.instance.enemies)
         {
             if (Vector3.Distance(transform.position, enemy.targetPoint.position) <= hitRadius
                 && !alreadyHit.Contains(enemy))
@@ -61,10 +66,10 @@ public class Projectile : MonoBehaviour
 
                 PlayHitVFX();
 
-                pierce--;
-                if (pierce <= 0)
+                currentPierce--;
+                if (currentPierce <= 0)
                 {
-                    Destroy(gameObject);
+                    Des();
                     break;
                 }
             }
@@ -83,6 +88,11 @@ public class Projectile : MonoBehaviour
         Vector3 scale = vfx.transform.localScale;
         scale *= onHitVFX.scaleMult;
         vfx.transform.localScale = scale;
+    }
+
+    public virtual void Des()
+    {
+        ObjectPool.Instance.Enqueue(projectileTag, gameObject);
     }
 }
 

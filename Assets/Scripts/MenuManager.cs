@@ -32,8 +32,12 @@ public class MenuManager : MonoBehaviour
     {
         foreach (GameObject item in toActivate)
         {
-            if (item == null) continue;
             item.SetActive(true);
+            foreach (MonoBehaviour mb in item.GetComponents<MonoBehaviour>())
+            {
+                if (item == null) continue;
+                mb.enabled = true;
+            }
         }
 
         Activated = true;

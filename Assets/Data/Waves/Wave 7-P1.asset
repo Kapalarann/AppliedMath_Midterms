@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90a4843f8725f74fb90532e40cadde8, type: 3}
   m_Name: Wave 7-P1
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
-  spawnDelay: {x: 5, y: 5}
+  spawnDelay: {x: 4, y: 6}
   spawnBudget: 10
   possibleEnemies:
   - {fileID: 11400000, guid: ec9d9695e603ea74ca875f313b47ed21, type: 2}

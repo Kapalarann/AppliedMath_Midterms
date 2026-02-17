@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -77,8 +78,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(EnemyData enemyData, Path path)
     {
-        GameObject enemyGO = Instantiate(
-            enemyData.prefab,
+        GameObject enemyGO = ObjectPool.Instance.Dequeue(
+            enemyData.prefabTag,
             path.transform.position,
             Quaternion.identity
         );
@@ -86,6 +87,7 @@ public class EnemySpawner : MonoBehaviour
         Enemy enemy = enemyGO.GetComponent<Enemy>();
         if (enemy == null) return;
         
+        enemy.enemyTag = enemyData.prefabTag;
         enemy.speed = enemyData.speed;
         enemy.maxHP = enemyData.maxHP;
         enemy.damage = enemyData.damage;

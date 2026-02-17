@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fa2e08c7dbb204ba7362b93254334e, type: 3}
   m_Name: Tatay
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  prefab: {fileID: 4780735978950228973, guid: 63b43138129913b44a13a0813b08d03a, type: 3}
+  prefabTag: Tatay
   maxHP: 500
   speed: 0.015
   goldReward: 20

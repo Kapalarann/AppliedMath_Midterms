@@ -7,7 +7,7 @@ using UnityEngine;
 public class TowerData : ScriptableObject
 {
     [Header("Projectile")]
-    public GameObject projectilePrefab;
+    public string projectileTag;
 
     [Header("Combat Stats")]
     public float cooldown = 1f;

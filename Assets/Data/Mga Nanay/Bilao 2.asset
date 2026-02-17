@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8296e5180c46c4780b87ec83160222, type: 3}
   m_Name: Bilao 2
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
-  projectilePrefab: {fileID: 6343473548989147803, guid: 019469c98452e4b49a88ce21944b4f2f, type: 3}
+  projectileTag: Bilao1
   cooldown: 4
   animationSpeed: 1
   hitRadius: 0.5

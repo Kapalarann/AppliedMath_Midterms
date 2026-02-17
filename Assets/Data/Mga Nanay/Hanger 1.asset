@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8296e5180c46c4780b87ec83160222, type: 3}
   m_Name: Hanger 1
   m_EditorClassIdentifier: Assembly-CSharp::TowerData
-  projectilePrefab: {fileID: 6343473548989147803, guid: 784639c0ada2fec4eaa25c00b1d63b2a, type: 3}
+  projectileTag: Hanger1
   cooldown: 2
   animationSpeed: 1
   hitRadius: 1

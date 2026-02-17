@@ -4,6 +4,13 @@ public class Hanger_Projectile : Projectile
 {
     private bool flipped = false;
 
+    public override void SetValues()
+    {
+        base.SetValues();
+
+        flipped = false;
+    }
+
     public override void FixedUpdate()
     {
         base.FixedUpdate();

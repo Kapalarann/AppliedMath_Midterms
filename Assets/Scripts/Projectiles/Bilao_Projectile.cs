@@ -31,10 +31,10 @@ public class Bilao_Projectile : Projectile
 
                 PlayHitVFX();
 
-                pierce -= dam;
-                if (pierce <= 0)
+                currentPierce -= dam;
+                if (currentPierce <= 0)
                 {
-                    Destroy(gameObject);
+                    Des();
                     break;
                 }
             }

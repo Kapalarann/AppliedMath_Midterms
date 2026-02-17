@@ -4,6 +4,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
+    [SerializeField] public string enemyTag;
     [SerializeField] public float maxHP;
     [SerializeField] public int goldReward;
     [SerializeField] public int damage;
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
     public void Initialize(Path path)
     {
         EnemyManager.instance.addEnemy(this);
+        progress = 0f;
         currentPath = path;
         previousPos = transform.position;
 
@@ -59,7 +61,7 @@ public class Enemy : MonoBehaviour
         currentHP -= damage;
         Debug.Log(name + " took " + damage + " damage. Currently at: " + currentHP + "/" + maxHP);
         if (currentHP <= 0f) {
-            Destroy(gameObject);
+            Des();
             DropCoins();
         }  
         if (hitFX == null) return;
@@ -68,16 +70,15 @@ public class Enemy : MonoBehaviour
 
     private void ReachEnd()
     {
-        Destroy(gameObject);
+        Des();
         GameUIScript.instance.dmgHP(damage);
     }
 
-    private void OnDestroy()
+    void Des()
     {
+        ObjectPool.Instance.Enqueue(enemyTag, gameObject);
         EnemyManager.instance.removeEnemy(this);
-        
     }
-
 
     void DropCoins()
     {
