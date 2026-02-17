@@ -30,6 +30,13 @@ public class GameUIScript : MonoBehaviour
     private Vector3 currencyOriginalPos;
     private float lastCurrency;
 
+    public static GameUIScript instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         displayedCurrency = currency;
@@ -37,6 +44,8 @@ public class GameUIScript : MonoBehaviour
 
         playerSlider.maxValue = maxHP;
         playerSlider.value = playerHP;
+
+        playerHP = maxHP;
 
         currencyOriginalPos = currencyUI.rectTransform.anchoredPosition;
         lastCurrency = currency;

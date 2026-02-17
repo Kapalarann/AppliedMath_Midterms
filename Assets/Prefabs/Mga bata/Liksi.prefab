@@ -988,6 +988,8 @@ MonoBehaviour:
   maxHP: 0
   goldReward: 0
   currentHP: 0
+  coinPrefab: {fileID: 5112707502439797136, guid: c0edddb67a09db94da94feeca329e4eb, type: 3}
+  coinAmount: 5
   currentPath: {fileID: 0}
   progress: 0
   speed: 0.02
@@ -1920,6 +1922,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8903119145498732503}
     m_Modifications:
+    - target: {fileID: 156026938695078945, guid: 215ac5e5fc61cf240b46c556ca958465, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 334485050623956805, guid: 215ac5e5fc61cf240b46c556ca958465, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

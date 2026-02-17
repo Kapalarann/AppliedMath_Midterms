@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int goldReward;
     public float currentHP;
 
+    [SerializeField] GameObject coinPrefab;
+    [SerializeField] int coinAmount = 5;
+
     [Header("Movement")]
     public Path currentPath;
     [Range(0f, 1f)] public float progress = 0f;
@@ -68,5 +71,21 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         EnemyManager.instance.removeEnemy(this);
+        DropCoins();
+    }
+
+
+    void DropCoins()
+    {
+        for (int i = 0; i < coinAmount; i++)
+        {
+            GameObject coin = Instantiate(
+                coinPrefab,
+                transform.position + Random.insideUnitSphere,
+                Quaternion.identity
+            );
+            coin.GetComponent<Coin>().setAmount(goldReward);
+            coin.GetComponent<Coin>().SetTarget(CoinTargetScript.Instance.target);
+        }
     }
 }
