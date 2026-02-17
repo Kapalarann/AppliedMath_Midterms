@@ -81,14 +81,14 @@ public class Enemy : MonoBehaviour
 
     void DropCoins()
     {
-        for (int i = 0; i < coinAmount; i++)
+        for (int i = 0; i < goldReward; i++)
         {
             GameObject coin = Instantiate(
                 coinPrefab,
                 transform.position + Random.insideUnitSphere,
                 Quaternion.identity
             );
-            coin.GetComponent<Coin>().setAmount(goldReward);
+            coin.GetComponent<Coin>().setAmount(1);
             coin.GetComponent<Coin>().SetTarget(CoinTargetScript.Instance.target);
         }
     }
